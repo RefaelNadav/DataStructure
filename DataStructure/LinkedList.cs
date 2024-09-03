@@ -33,7 +33,7 @@ namespace DataStructure
 
             Node curr = Head;
 
-            while (curr.getNext != null)
+            while (curr.getNext() != null)
             {
                 curr = curr.getNext();
             }
@@ -41,6 +41,7 @@ namespace DataStructure
             curr.setNext(newNode);
         }
 
+        //o(n)
         public string Display()
         {
             if (Head == null)
@@ -49,12 +50,30 @@ namespace DataStructure
             }
             Node curr = Head;
             string values = "";
-            while (curr.getNext != null)
+            while (curr.getNext() != null)
             {
-                values += $" -< {curr.getValue().ToString()}";
+                values += $"{curr.getValue().ToString()} ->";
                 curr = curr.getNext();
             }
+            values += curr.getValue();
             return values;
+        }
+
+        public int Length() 
+        {
+            if (Head == null)
+            {
+                return 0;
+            }
+            Node curr = Head;
+            int counter = 1;
+            while (curr.getNext() != null)
+            {
+                counter ++;
+                curr = curr.getNext();
+            }
+
+            return counter;
         }
     }
 }
