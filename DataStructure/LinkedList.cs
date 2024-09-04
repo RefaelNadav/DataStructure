@@ -52,7 +52,7 @@ namespace DataStructure
             string values = "";
             while (curr.getNext() != null)
             {
-                values += $"{curr.getValue().ToString()} ->";
+                values += $"{curr.getValue().ToString()} -> ";
                 curr = curr.getNext();
             }
             values += curr.getValue();
@@ -66,14 +66,44 @@ namespace DataStructure
                 return 0;
             }
             Node curr = Head;
-            int counter = 1;
-            while (curr.getNext() != null)
+            int counter = 0;
+            while (curr != null)
             {
                 counter ++;
                 curr = curr.getNext();
             }
 
             return counter;
+        }
+
+        public void RemoveAllValues(int data)
+        {
+            if(Head == null)
+            {
+                return;
+            }
+
+            while (Head != null && Head.getValue() == data)
+            {
+                Head = Head.getNext();
+            }
+            Node curr = Head;
+
+            Node prev = Head;
+            while (curr != null)
+            {
+                if(curr.getValue() == data)
+                {
+                    prev.setNext(curr.getNext());
+                }
+                else
+                {
+                    prev = curr;
+                }
+                curr = curr.getNext();
+            }
+
+            return;
         }
     }
 }
